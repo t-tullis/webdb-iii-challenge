@@ -77,18 +77,17 @@ router.delete('/:id', (req, res) => {
     })
 })
 
-// router.get('/:id/students', (req,res) => {
-//     const { id } = req.params
-//     db.select('*')
-//     .from('cohorts')
-//     .where({ id })
-//     .join('students', {'id':  'cohort_id'})
-//     .then(student => {
-//         res.status(200).json(student)
-//     }).catch(error => {
-//         res.status(500).json(error)
-//     })
-// })
+router.get('/:id/students', (req,res) => {
+    const { id } = req.params
+    db('cohorts')
+    .where({'cohorts.id': id})
+    .join('students', {'cohorts.id': 'students.cohort_id'})
+    .then(student => {
+        res.status(200).json(student)
+    }).catch(error => {
+        res.status(500).json(error)
+    })
+})
 
   
 

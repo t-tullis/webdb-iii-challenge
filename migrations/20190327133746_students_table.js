@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
         table.increments();
   
         table.string('name', 128).notNullable().unique()
+       
         table.integer('cohort_id')
         .unsigned()
         .references('id')
